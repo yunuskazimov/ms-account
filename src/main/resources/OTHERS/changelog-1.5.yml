@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create Period Number table
+      author: Yunus Kazimov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: true
+            schemaName: public
+            tableName: period_number

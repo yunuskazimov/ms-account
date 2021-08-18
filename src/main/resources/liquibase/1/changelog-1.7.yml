@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add sequence_number column in accounts_check table
+      author: Yunus Kazimov
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sequence_number
+                  type: varchar(128)
+                  constraints:
+                    nullable: true
+            schemaName: public
+            tableName: accounts_check

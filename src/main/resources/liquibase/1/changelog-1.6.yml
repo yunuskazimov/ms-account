@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create Accounts Check table
+      author: Yunus Kazimov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: true
+              - column:
+                  name: account_no
+                  type: varchar(64)
+              - column:
+                  name: amount
+                  type: double precision
+              - column:
+                  name: currency
+                  type: varchar(12)
+              - column:
+                  name: customer_id
+                  type: bigint
+              - column:
+                  name: is_deleted
+                  type: boolean
+              - column:
+                  name: status
+                  type: varchar(32)
+              - column:
+                  name: account_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: "fk_accounts_id"
+                    references: accounts(id)
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
+            schemaName: public
+            tableName: accounts_check

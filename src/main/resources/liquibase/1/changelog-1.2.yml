@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add account id column in Accounts History table
+      author: Yunus Kazimov
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: account_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: "fk_accounts_id"
+                    references: accounts(id)
+                    nullable: true
+            schemaName: public
+            tableName: accounts_history

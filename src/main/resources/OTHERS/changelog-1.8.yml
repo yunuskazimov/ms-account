@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add sequence_number column in period_number table
+      author: Yunus Kazimov
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sequence_number
+                  type: varchar(128)
+                  constraints:
+                    unique: true
+                    nullable: true
+            schemaName: public
+            tableName: period_number

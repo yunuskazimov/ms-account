@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: Add status column in accounts table
+      author: Yunus Kazimov
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: status
+                  type: varchar(32)
+            schemaName: public
+            tableName: accounts

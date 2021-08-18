@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    username: postgres
+    password: Pass2021
+    url: jdbc:postgresql://yk-pc-l-1:5432/account
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+  rabbitmq:
+    addresses: yk-pc-l-1:5672
+
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+    enabled: true
+
+server:
+  port: 8094
+
+client:
+  customer:
+    int:
+      url: http://yk-pc-l-1:8095/int/customers
