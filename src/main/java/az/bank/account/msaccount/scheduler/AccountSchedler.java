@@ -8,6 +8,7 @@ import az.bank.account.msaccount.queue.AccountMailSender;
 import az.bank.account.msaccount.service.AccountCheckService;
 import az.bank.account.msaccount.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
+import net.javacrumbs.shedlock.core.SchedulerLock;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +30,11 @@ public class AccountSchedler {
         this.accountMailSender = accountMailSender;
     }
 
-    @Scheduled(fixedDelay = 20000)
+    @Scheduled(fixedDelay = 20_000)
+
+   // @Scheduled(cron = "0 0/15 * * * ?")
+    @SchedulerLock(name = "listAccounts",
+            lockAtLeastForString = "PT5M")
     public void listAccounts() {
         String sequence = accountCheckService.getAccount().getSequenceNumber();
         log.info("Checking.......<");

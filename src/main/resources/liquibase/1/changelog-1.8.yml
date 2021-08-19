@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create shedlock table
+      author: Yunus Kazimov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: true
+              - column:
+                  name: lock_until
+                  type: TIMESTAMP(3)
+              - column:
+                  name: locked_at
+                  type: TIMESTAMP(3)
+              - column:
+                  name: locked_by
+                  type: varchar(255)
+            schemaName: public
+            tableName: shedlock
