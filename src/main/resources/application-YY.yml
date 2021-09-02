@@ -7,6 +7,8 @@ spring:
     hibernate:
       ddl-auto: none
     generate-ddl: false
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
   rabbitmq:
     addresses: 172.17.0.2:5672
 

@@ -30,7 +30,7 @@ public class AccountSchedler {
         this.accountMailSender = accountMailSender;
     }
 
-    @Scheduled(fixedDelay = 20_000)
+    @Scheduled(fixedDelay = 20_000,initialDelay = 100_000)
 
    // @Scheduled(cron = "0 0/15 * * * ?")
     @SchedulerLock(name = "listAccounts",
@@ -39,23 +39,22 @@ public class AccountSchedler {
         String sequence = accountCheckService.getAccount().getSequenceNumber();
         log.info("Checking.......<");
 
-        accountCheckService.getBySequenceNumber(sequence).forEach(checkDto -> {
-            accountService.getAccounts()
-                    .stream()
-                    .filter(accDto -> checkDto.getAccountNo()
-                            .equals(accDto.getAccountNo()))
-                    .filter(accDto -> ((checkDto.getAmount() != accDto.getAmount())))
-                    .forEachOrdered(accDto -> {
-                        String text="Musterinin ID-si : " + accDto.getCustomerId()
-                                + ", Hesabdaki Ferq : "
-                                + (accDto.getAmount() - checkDto.getAmount());
-                        System.out.println(text);
-                        accountMailSender.sendMail(MailDto
-                                .builder()
-                                .text(text)
-                                .build());
-                    });
-        });
+        accountCheckService.getBySequenceNumber(sequence)
+                .forEach(checkDto -> accountService.getAccounts()
+                .stream()
+                .filter(accDto -> checkDto.getAccountNo()
+                        .equals(accDto.getAccountNo()))
+                .filter(accDto -> ((checkDto.getAmount() != accDto.getAmount())))
+                .forEachOrdered(accDto -> {
+                    String text="Musterinin ID-si : " + accDto.getCustomerId()
+                            + ", Hesabdaki Ferq : "
+                            + (accDto.getAmount() - checkDto.getAmount());
+                    System.out.println(text);
+                    accountMailSender.sendMail(MailDto
+                            .builder()
+                            .text(text)
+                            .build());
+                }));
 
         log.info("Checking.......>");
 
