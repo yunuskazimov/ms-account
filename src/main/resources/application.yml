@@ -1,12 +1,14 @@
 spring:
   datasource:
     username: postgres
-    password: ISsGqlk203
-    url: jdbc:postgresql://postgres-postgresql.default.svc.cluster.local:5432/account
+    password: bHa8Hn9OBm
+    url: jdbc:postgresql://y-postgres-postgresql.development.svc.cluster.local:5432/account
   jpa:
     hibernate:
       ddl-auto: none
     generate-ddl: false
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
   rabbitmq:
     addresses: 172.17.0.2:5672
 

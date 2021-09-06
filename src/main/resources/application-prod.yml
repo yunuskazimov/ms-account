@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: postgres
-    password: ISsGqlk203
-    url: jdbc:postgresql://postgres-postgresql.default.svc.cluster.local:5432/account
+    password: 68ugPBw41b
+    url: jdbc:postgresql://localhost:5432/account
   jpa:
     hibernate:
       ddl-auto: none
