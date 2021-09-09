@@ -10,7 +10,7 @@ spring:
     properties:
       dialect: org.hibernate.dialect.PostgreSQLDialect
   rabbitmq:
-    addresses: 172.17.0.2:5672
+    addresses: rabbit-rabbitmq.development.svc.cluster.local:5672
 
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
@@ -22,4 +22,4 @@ server:
 client:
   customer:
     int:
-      url: http://yk-pc-l-1:8095/int/customers
+      url: http://bank.local:80/int/customers
